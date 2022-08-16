@@ -198,8 +198,8 @@ dex:
       enabled: false
 
   image:
-    repository: quay.io/dexidp/dex
-    tag: v2.26.0
+    repository: quay.io/redhat-cop/dex
+    tag: v2.22.0-openshift
     imagePullPolicy: IfNotPresent
   initImage:
     repository:
