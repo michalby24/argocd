@@ -9,17 +9,17 @@ server:
   config:
     repositories: |
       - type: git
-        url: https://github.com/kurtburak/argocd.git
+        url: https://github.com/michalby24/argocd.git
       - name: argo-helm
         type: helm
         url: https://argoproj.github.io/argo-helm
   additionalApplications: 
-    - name: argocd
-      namespace: argocd
+    - name: argocdod
+      namespace: argocdod
       destination:
-        namespace: argocd
+        namespace: argocdod
         server: https://kubernetes.default.svc
-      project: argocd
+      project: argocdod
       source:
         helm:
           version: v3
@@ -27,20 +27,20 @@ server:
           - values.yaml
           - ../values-override.yaml
         path: argocd-install/argo-cd
-        repoURL: https://github.com/kurtburak/argocd.git
+        repoURL: https://github.com/michalby24/argocd.git
         targetRevision: HEAD
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
     - name: argocd-apps
-      namespace: argocd
+      namespace: argocdod
       destination:
-        namespace: argocd
+        namespace: argocdod
         server: https://kubernetes.default.svc
-      project: argocd
+      project: argocdod
       source:
         path: argocd-apps
-        repoURL: https://github.com/kurtburak/argocd.git
+        repoURL: https://github.com/michalby24/argocd.git
         targetRevision: HEAD
         directory:
           recurse: true
@@ -50,14 +50,14 @@ server:
           selfHeal: true
           prune: true
     - name: argocd-appprojects
-      namespace: argocd
+      namespace: argocdod
       destination:
-        namespace: argocd
+        namespace: argocdod
         server: https://kubernetes.default.svc
-      project: argocd
+      project: argocdod
       source:
         path: argocd-appprojects
-        repoURL: https://github.com/kurtburak/argocd.git
+        repoURL: https://github.com/michalby24/argocd.git
         targetRevision: HEAD
         directory:
           recurse: true
@@ -67,15 +67,15 @@ server:
           selfHeal: true
           prune: true
   additionalProjects: 
-  - name: argocd
-    namespace: argocd
+  - name: argocdod
+    namespace: argocdod
     additionalLabels: {}
     additionalAnnotations: {}
     description: Argocd Project
     sourceRepos:
     - '*'
     destinations:
-    - namespace: argocd
+    - namespace: argocdod
       server: https://kubernetes.default.svc
     clusterResourceWhitelist:
     - group: '*'
