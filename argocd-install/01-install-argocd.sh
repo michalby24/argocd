@@ -2,7 +2,7 @@
 DIRNAME=`dirname $0`
 
 if [ -z ${ARGOCD_NS+x} ];then
-  ARGOCD_NS='argocd'
+  ARGOCD_NS='argocdod'
 fi
 
 if [ -z ${1+x} ]; then
